@@ -1,0 +1,3 @@
+See
+- /notebooks/fig7/regions.ipynb
+- /notebooks/fig7/boundaries.ipynb
