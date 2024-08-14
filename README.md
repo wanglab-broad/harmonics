@@ -13,7 +13,7 @@ pip install git+https://github.com/wanglab-broad/harmonics@main
 ```
 
 ## 2. Usage
-We can use this package in Python as follows:
+This package can be used in Python as follows:
 ```python
 import scanpy as sc
 import harmonics as hm
@@ -29,7 +29,7 @@ hm.sfilter(
 ```
 For a list of parameters, their meanings, and their types, run `help(hm.sfilter)`.
 
-Alternatively, we can run `hm.sfilter` from the shell:
+Alternatively, one can run `hm.sfilter` from the shell:
 ```bash
 harmonics \
 --read_path /path/to/your/data.h5ad \
