@@ -1,9 +1,11 @@
 # Harmonic analysis of spatial transcriptomics data
 [![Biorxiv badge](https://zenodo.org/badge/doi/10.1101/2023.06.30.547258.svg)](https://doi.org/10.1101/2023.06.30.547258) ⬅️ manuscript <br>
 
-This repository includes a minimal package for performing filtering and all [notebooks](notebooks) used to generate figures.
+This repository includes
+1. a minimal package for performing filtering
+2. all [notebooks](notebooks) used to generate figures
 
-See instructions below for installation and usage.
+See instructions below for installing and using the package.
 
 ## 1. Installation
 ```
