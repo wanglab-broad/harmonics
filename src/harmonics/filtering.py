@@ -192,6 +192,11 @@ def sfilter(
         AnnData object
     filter_keys
         Types of filtering desired
+        Options are
+            - 'heat': low-pass filter used for region identification
+            - 'juxtacrine': high-pass filter used for interaction identification
+            - 'juxtacrine_dual': low-pass dual filter of 'juxtacrine'
+            - 'paracrine': mid-pass filter used for boundary identification
     layer
         Layer in `adata.layers` to filter
     sparse
