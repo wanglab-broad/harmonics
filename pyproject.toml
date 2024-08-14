@@ -1,0 +1,24 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "harmonics"
+authors = [
+    {name = "Kamal Maher", email = "kmaher@mit.edu"},
+]
+readme = {file = "README.md", content-type="text/markdown"}
+license = {file = "LICENSE"}
+requires-python = ">=3.9"
+dependencies = [
+    "scanpy",
+    "pygsp",
+]
+dynamic = ["version", "description"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[project.scripts]
+harmonics = "harmonics.cli:main"
