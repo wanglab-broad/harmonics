@@ -10,7 +10,7 @@ import scanpy as sc
 from .filtering import clean, normalize, sfilter
 
 
-def main(
+def sfilter_cli(
     read_path: str,
     write_path: str,
     filter_keys: Collection[str],
@@ -30,7 +30,7 @@ def main(
     pbar: bool,
 ):
     """\
-    Main function for submitting filtering jobs from the shell.
+    Load, filter, and write data.
     """
 
     # Read data
@@ -67,42 +67,48 @@ def main(
     print(f'Written to {write_path}', flush=True)
 
 
-parser = ArgumentParser()
-parser.add_argument('--read_path', type=str)
-parser.add_argument('--write_path', type=str)
-parser.add_argument('--filter_keys', type=str, nargs='+')
-parser.add_argument('--layer', type=str, default=None)
-parser.add_argument('--min_genes', type=int, default=None)
-parser.add_argument('--min_counts', type=int, default=1)
-parser.add_argument('--min_cells', type=int, default=None)
-parser.add_argument('--percent_cells', type=float, default=None)
-parser.add_argument('--sparse', action='store_true')
-parser.add_argument('--normalize_total', action='store_true')
-parser.add_argument('--log1p', action='store_true')
-parser.add_argument('--scale', action='store_true')
-parser.add_argument('--lap_type', type=str, default='combinatorial')
-parser.add_argument('--order', type=int, default=30)
-parser.add_argument('--spatial_key', type=str, default='spatial')
-parser.add_argument('--tau', type=float, default=5)
-parser.add_argument('--pbar', action='store_true')
-args = parser.parse_args()
+def main():
 
-main(
-    args.read_path,
-    args.write_path,
-    args.filter_keys,
-    args.layer,
-    args.min_genes,
-    args.min_counts,
-    args.min_cells,
-    args.percent_cells,
-    args.sparse,
-    args.normalize_total,
-    args.log1p,
-    args.scale,
-    args.lap_type,
-    args.order,
-    args.spatial_key,
-    args.tau,
-    args.pbar,
-)
+    """\
+    Main function for submitting filtering jobs from the shell.
+    """
+
+    parser = ArgumentParser()
+    parser.add_argument('--read_path', type=str)
+    parser.add_argument('--write_path', type=str)
+    parser.add_argument('--filter_keys', type=str, nargs='+')
+    parser.add_argument('--layer', type=str, default=None)
+    parser.add_argument('--min_genes', type=int, default=None)
+    parser.add_argument('--min_counts', type=int, default=1)
+    parser.add_argument('--min_cells', type=int, default=None)
+    parser.add_argument('--percent_cells', type=float, default=None)
+    parser.add_argument('--sparse', action='store_true')
+    parser.add_argument('--normalize_total', action='store_true')
+    parser.add_argument('--log1p', action='store_true')
+    parser.add_argument('--scale', action='store_true')
+    parser.add_argument('--lap_type', type=str, default='combinatorial')
+    parser.add_argument('--order', type=int, default=30)
+    parser.add_argument('--spatial_key', type=str, default='spatial')
+    parser.add_argument('--tau', type=float, default=5)
+    parser.add_argument('--pbar', action='store_true')
+    args = parser.parse_args()
+
+    sfilter_cli(
+        args.read_path,
+        args.write_path,
+        args.filter_keys,
+        args.layer,
+        args.min_genes,
+        args.min_counts,
+        args.min_cells,
+        args.percent_cells,
+        args.sparse,
+        args.normalize_total,
+        args.log1p,
+        args.scale,
+        args.lap_type,
+        args.order,
+        args.spatial_key,
+        args.tau,
+        args.pbar,
+    )
