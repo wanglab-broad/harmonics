@@ -21,7 +21,7 @@ import harmonics as hm
 # Load data
 adata = sc.read_h5ad('/path/to/your/data.h5ad')
 
-# High-pass filter genes using a square-root kernel
+# High-pass filter genes using a square-root (i.e. juxtacrine interaction) kernel
 hm.sfilter(
     adata,
     'juxtacrine',
