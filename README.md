@@ -1,5 +1,5 @@
 # Harmonic analysis of spatial transcriptomics data
-[![Biorxiv badge](https://zenodo.org/badge/doi/10.1101/2023.06.30.547258.svg)](https://doi.org/10.1101/2023.06.30.547258) ⬅️ manuscript <br>
+[![Biorxiv badge](https://zenodo.org/badge/doi/10.1101/2023.06.30.547258.svg)](https://doi.org/10.1101/2024.08.14.607982) ⬅️ manuscript <br>
 
 This repository includes
 1. a minimal package for performing filtering
@@ -21,7 +21,7 @@ import harmonics as hm
 # Load data
 adata = sc.read_h5ad('/path/to/your/data.h5ad')
 
-# High-pass filter genes using a square-root kernel
+# High-pass filter genes using a square-root (i.e. juxtacrine interaction) kernel
 hm.sfilter(
     adata,
     'juxtacrine',
