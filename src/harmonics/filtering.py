@@ -43,16 +43,16 @@ def clean(
     """
 
     if min_genes:
-        print(f'\tRemoving cells with fewer than {min_genes} genes')
+        print(f'\tRemoving cells with fewer than {min_genes} genes', flush=True)
         sc.pp.filter_cells(adata, min_genes=min_genes)
     if min_counts:
-        print(f'\tRemoving cells with fewer than {min_counts} counts')
+        print(f'\tRemoving cells with fewer than {min_counts} counts', flush=True)
         sc.pp.filter_cells(adata, min_counts=min_counts)
     if min_cells:
-        print(f'\tRemoving genes found in fewer than {min_cells} cells')
+        print(f'\tRemoving genes found in fewer than {min_cells} cells', flush=True)
         sc.pp.filter_genes(adata, min_cells=min_cells)
     if percent_cells:
-        print(f'\tRemoving genes found in less than {percent_cells} percent of cells')
+        print(f'\tRemoving genes found in less than {percent_cells} percent of cells', flush=True)
         sc.pp.filter_genes(adata, min_cells=len(adata)*percent_cells)
 
 
@@ -228,7 +228,7 @@ def sfilter(
         X = adata.X
 
     # Create domain
-    print(f'Creating graph domain')
+    print('Creating graph domain', flush=True)
     G = pg.graphs.Graph(delaunay(adata.obsm[spatial_key]), lap_type=lap_type)
     G.estimate_lmax()
 
@@ -246,5 +246,5 @@ def sfilter(
     # Apply filter(s) to signals
     for filter_key in filter_keys:
         g = gdict[filter_key]
-        print(f'Filtering using a {filter_key} kernel')
+        print(f'Filtering using a {filter_key} kernel', flush=True)
         adata.layers[filter_key] = _iter_filter(X, g, sparse, order, pbar)
