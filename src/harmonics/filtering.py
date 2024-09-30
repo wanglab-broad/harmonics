@@ -112,16 +112,15 @@ def delaunay(
         Sparse adjacency matrix corresponding to the triangulation
     """
 
+    # Adapted from Squidpy's squidpy.gr._build under BSD-3-Clause License
+    # Source: https://github.com/scverse/squidpy/blob/main/src/squidpy/gr/_build.py
     tri = Delaunay(coords)
     n_cells = len(coords)
-    A = sp.lil_matrix((n_cells,n_cells), dtype=float)
-    for simplex in tri.simplices:
-        for i in simplex:
-            for j in simplex:
-                A[i,j] = 1
-
-    A = sp.csr_matrix(A)
-    A.setdiag(0)
+    indptr, indices = tri.vertex_neighbor_vertices
+    A = sp.csr_matrix(
+        (np.ones_like(indices, dtype=np.float64), indices, indptr),
+        shape=(n_cells, n_cells),
+    )
 
     return A
 
