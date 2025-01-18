@@ -195,6 +195,7 @@ def sfilter(
             - 'heat': low-pass filter used for region identification
             - 'juxtacrine': high-pass filter used for interaction identification
             - 'juxtacrine_dual': low-pass dual filter of 'juxtacrine'
+            - 'gamma': a modified version of 'juxtacrine_dual'
             - 'paracrine': mid-pass filter used for boundary identification
     layer
         Layer in `adata.layers` to filter
@@ -240,6 +241,8 @@ def sfilter(
         gdict['juxtacrine'] = pg.filters.Filter(G, lambda x: np.sqrt(x))
     if 'juxtacrine_dual' in filter_keys:
         gdict['juxtacrine_dual'] = pg.filters.Filter(G, lambda x: np.sqrt(G.lmax-x))
+    if 'gamma' in filter_keys:
+        gdict['gamma'] = pg.filters.Filter(G, lambda x: np.sqrt(2-x))
     if 'paracrine' in filter_keys:
         gdict['paracrine'] = pg.filters.Filter(G, lambda x: np.exp(-tau*x) * np.sqrt(x))
 
