@@ -197,6 +197,8 @@ def sfilter(
             - 'juxtacrine_dual': low-pass dual filter of 'juxtacrine'
             - 'gamma': a modified version of 'juxtacrine_dual'
             - 'paracrine': mid-pass filter used for boundary identification
+            - 'a_real': the real part of the sqrt(A) filter
+            - 'a_imag': the imag part of the sqrt(A) filter
     layer
         Layer in `adata.layers` to filter
     sparse
@@ -245,6 +247,10 @@ def sfilter(
         gdict['gamma'] = pg.filters.Filter(G, lambda x: np.sqrt(2-x))
     if 'paracrine' in filter_keys:
         gdict['paracrine'] = pg.filters.Filter(G, lambda x: np.exp(-tau*x) * np.sqrt(x))
+    if 'a_real' in filter_keys:
+        gdict['a_real'] = pg.filters.Filter(G, lambda x: np.sqrt(np.maximum(0,1-x)))
+    if 'a_imag' in filter_keys:
+        gdict['a_imag'] = pg.filters.Filter(G, lambda x: np.sqrt(np.maximum(0,x-1)))
 
     # Apply filter(s) to signals
     for filter_key in filter_keys:
